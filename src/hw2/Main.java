@@ -1,17 +1,18 @@
 package hw2;
-import java.io.InputStream;
-import java.util.*;
+
+import GradeSystem.*;
 
 public class Main {
+
 	public static void main(String[] args) {
 		
-		Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("---");
-		
-		while(true) {
-			String x = scanner.next();
-			System.out.println(x + "\n");
-		}
+		int num_score = 5;
+		String[] score_name = {"lab1", "lab2", "lab3", "mid-term", "final exam"};
+		double[] score_weight = {0.1, 0.1, 0.1, 0.3, 0.4};
+		String student_file = "input.txt";
+
+		GradeSystem system = new GradeSystem(num_score, score_weight, score_name, student_file);
+
+		system.main_loop();
 	}
 }

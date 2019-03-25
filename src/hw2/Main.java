@@ -13,6 +13,8 @@ public class Main {
 
 		GradeSystem system = new GradeSystem(num_score, score_weight, score_name, student_file);
 
-		system.main_loop();
+		/*
+		 * Main Loop
+		 **/
 	}
 }

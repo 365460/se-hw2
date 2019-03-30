@@ -58,4 +58,6 @@ public class Student {
 	public void set_rank(int rank) {
 		this.rank = rank;
 	}
+	
+	
 }

@@ -1,10 +1,14 @@
 package hw2;
 
+import java.util.Scanner;
+
 import GradeSystem.*;
 
 public class Main {
 
-	public static void main(String[] args) {
+	private static Scanner scanner;
+
+	public static void main(String[] args) throws NoSuchIDExecption {
 		
 		int num_score = 5;
 		String[] score_name = {"lab1", "lab2", "lab3", "mid-term", "final exam"};
@@ -13,8 +17,88 @@ public class Main {
 
 		GradeSystem system = new GradeSystem(num_score, score_weight, score_name, student_file);
 
-		/*
-		 * Main Loop
-		 **/
+		scanner = new Scanner(System.in);
+		boolean quit = false;
+		while(quit == false) {	
+			
+			System.out.println("Input ID or Q");
+			String in = scanner.next();
+			
+			if(in.equals("Q")){
+				break;
+			}else{
+				
+				int ID = Integer.valueOf(in);
+				Student student = system.get_student(ID);
+				System.out.println("Welcome " + student.get_name());
+				boolean exit = false;
+				
+				while(exit==false){
+					
+					String option = scanner.next();
+					
+					if(option.equals("G")){
+						for(int i = 0 ; i < 5 ; i++){
+							System.out.println(score_name[i] + ":" + Double.toString(student.get_score(i)));
+						}
+						System.out.println("Total grade:" + Double.toString(system.cal_total_grade(student)));
+					}
+					else if(option.equals("R")){
+						System.out.println("Rank:" +  Integer.toString(student.get_rank()));
+					}
+					else if(option.equals("A")){
+						System.out.println("Average:" +  Double.toString(student.get_average()));	
+					}
+					else if(option.equals("W")){
+						//Show old weight
+						System.out.println("Old weight");
+						for(int i = 0 ; i < 5 ; i++){
+							Double tmp = 100*score_weight[i];
+							System.out.println(score_name[i]+":"+ Integer.toString(tmp.intValue()) + "%");
+						}
+						//Input new weight
+						boolean update = false;
+						while( update== false){
+							
+							System.out.println("Input update weight.");
+							double[] update_weight = new double[5]; 
+							double total = 0 ;
+							for(int i = 0 ; i < 5 ; i++){
+								System.out.print(score_name[i]+":");
+								update_weight[i] = Double.valueOf(scanner.next())/100;
+								total += update_weight[i];
+								System.out.println();
+							}
+							
+							//Check Input
+							if(total == 1){
+								//Check 100%
+								System.out.println("Input is correct or not. [y/n]");
+								for(int i = 0 ; i < 5 ; i++){
+									Double tmp_ = 100*update_weight[i];
+									System.out.println(score_name[i]+":"+ Integer.toString(tmp_.intValue()) + "%");
+								}
+								//Update
+								if(scanner.next().equals("y")){ 
+									system.update_weight(update_weight);
+									for(int i = 0 ; i < 5 ; i++){
+										score_weight[i]=update_weight[i];
+									}
+									update = true;
+								}
+							}else{
+								System.out.println("Total of update weight is not 100%. Please try again!");
+							}	
+						}
+					}
+					else if(option.equals("E")){
+						exit = true;
+					}
+					else{
+						System.out.println("Please type G,R,A,W,E !"+"\n");
+					}
+				}	
+			}			
+		}
 	}
 }

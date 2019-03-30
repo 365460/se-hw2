@@ -123,7 +123,7 @@ public class GradeSystem {
 		int rank = 1;
 		for(Pair pair: temp) {
 			students.get(pair.id).set_rank(rank++);
-			System.out.println(pair.grade );
+			//System.out.println(pair.grade );
 		}
 	}
 
@@ -149,8 +149,8 @@ public class GradeSystem {
 	 *  @pram score_weight: the new weight of score
 	 * time complexity : O(# of score) + O(NlogN)
 	 * */
-	public void update_weight(double score_weight) {
-		for(int i=0; i<num_score; i++) this.score_weight[i] = score_weight;
+	public void update_weight(double [] score_weight) {
+		for(int i=0; i<num_score; i++) this.score_weight[i] = score_weight[i];
 		cal_rank();
 	}
 

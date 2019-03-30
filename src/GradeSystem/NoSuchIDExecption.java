@@ -6,3 +6,17 @@ public class NoSuchIDExecption extends Exception {
 		super("No such ID " + ID);
 	}
 }
+
+
+
+
+
+/*
+public class GradeLessThanZeroExecption extends Exception {
+
+	public GradeLessThanZeroExecption() {
+		super(" Grade Less Than Zero");
+	}
+}
+*/
+

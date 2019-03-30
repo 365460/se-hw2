@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import GradeSystem.*;
 
-public class GetStudentTest {
+public class UpdateWeightTest {
 
 	GradeSystem system;
 
@@ -35,31 +35,7 @@ public class GetStudentTest {
 	//123454 B 10 10 10 10 10
 	//123453 C 20 20 20 20 20
 	//123452 D 40 30 30 40 30
-	@Test
-	public void test_get_student1() {
-		double[] score = {100, 100, 100, 100, 100};
-		String name = "A";
-		int ID = 123456;
-		try {
-			Student student = system.get_student(ID);
-			for(int i=0; i<score.length; i++) assertEquals(student.get_score(i), score[i], 0);
-			assertEquals(student.get_name(), name);
-			assertEquals(student.get_ID(), ID);
-		} catch(NoSuchIDExecption e) {
-		}
-	}
-
-	@Test
-	public void test_get_student_with_wrong_ID() {
-		int ID = 123;
-		try {
-			Student student = system.get_student(ID);
-		} catch(NoSuchIDExecption e) {
-			assertNotNull(e.getMessage());
-		}
-	}
-
-			
+	
 	
 	@Test
 	public void test_update_weight1() {

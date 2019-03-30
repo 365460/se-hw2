@@ -1,5 +1,7 @@
 package hw2;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.Scanner;
 
 import GradeSystem.*;
@@ -28,10 +30,19 @@ public class Main {
 				break;
 			}else{
 				
-				int ID = Integer.valueOf(in);
-				Student student = system.get_student(ID);
-				System.out.println("Welcome " + student.get_name());
 				boolean exit = false;
+				Student student = null;
+				int ID = Integer.valueOf(in);
+				
+				try {
+					student = system.get_student(ID);
+					System.out.println("Welcome " + student.get_name());
+				} catch(NoSuchIDExecption e) {
+					assertNotNull(e.getMessage());
+					System.out.println("Wrong ID");
+					exit = true;
+				}
+							
 				
 				while(exit==false){
 					
@@ -56,39 +67,47 @@ public class Main {
 							Double tmp = 100*score_weight[i];
 							System.out.println(score_name[i]+":"+ Integer.toString(tmp.intValue()) + "%");
 						}
+						
 						//Input new weight
 						boolean update = false;
-						while( update== false){
+						while(update== false){
 							
 							System.out.println("Input update weight.");
 							double[] update_weight = new double[5]; 
-							double total = 0 ;
+							//double total = 0 ;
 							for(int i = 0 ; i < 5 ; i++){
 								System.out.print(score_name[i]+":");
 								update_weight[i] = Double.valueOf(scanner.next())/100;
-								total += update_weight[i];
-								System.out.println();
+							//	total += update_weight[i];
+								
 							}
 							
 							//Check Input
-							if(total == 1){
-								//Check 100%
+							//if(total == 1){
+								//Check  Input
 								System.out.println("Input is correct or not. [y/n]");
 								for(int i = 0 ; i < 5 ; i++){
 									Double tmp_ = 100*update_weight[i];
 									System.out.println(score_name[i]+":"+ Integer.toString(tmp_.intValue()) + "%");
 								}
 								//Update
-								if(scanner.next().equals("y")){ 
-									system.update_weight(update_weight);
-									for(int i = 0 ; i < 5 ; i++){
-										score_weight[i]=update_weight[i];
+								if(scanner.next().equals("y")){
+									try {
+										system.update_weight(update_weight);
+										for(int i = 0 ; i < 5 ; i++){
+											score_weight[i]=update_weight[i];
+										}
+										update = true;
+									} catch(UpdateWeightExecption e) {
+										System.out.println("Sum of update weight shoud be 100% and each of them should be greater than 0. Please try again!");
 									}
-									update = true;
 								}
-							}else{
+							
+							/*}else{
 								System.out.println("Total of update weight is not 100%. Please try again!");
 							}	
+							*/
+							
 						}
 					}
 					else if(option.equals("E")){
@@ -100,5 +119,6 @@ public class Main {
 				}	
 			}			
 		}
+		System.out.println("Quit!");
 	}
 }

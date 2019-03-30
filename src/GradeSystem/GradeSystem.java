@@ -1,5 +1,7 @@
 package GradeSystem;
 import java.util.*;
+
+
 import java.io.*;
 
 public class GradeSystem {
@@ -132,12 +134,14 @@ public class GradeSystem {
 	 * @pram: Student oject
 	 * time complexity : O(# of score)
 	 */
-	public double cal_total_grade(Student student) {
+	public double cal_total_grade(Student student)  {
+		
 		double grade = 0;
 
-		for(int i=0; i<num_score; i++) 
-			grade += student.get_score(i) * score_weight[i];
-
+		for(int i=0; i<num_score; i++) {
+			
+				grade += student.get_score(i) * score_weight[i];
+		}
 		return grade;
 	}
 
@@ -149,9 +153,22 @@ public class GradeSystem {
 	 *  @pram score_weight: the new weight of score
 	 * time complexity : O(# of score) + O(NlogN)
 	 * */
-	public void update_weight(double [] score_weight) {
-		for(int i=0; i<num_score; i++) this.score_weight[i] = score_weight[i];
-		cal_rank();
+	public void update_weight(double [] score_weight) throws UpdateWeightExecption {
+		double t = 0 ;
+		for(int i=0; i<num_score; i++) {
+			if(score_weight[i]<0){
+				throw new UpdateWeightExecption();
+			}
+			else{
+				t += score_weight[i];
+			}
+		}
+		if(t != 1) {
+			throw new UpdateWeightExecption();
+		}else{
+			for(int i=0; i<num_score; i++) this.score_weight[i] = score_weight[i];
+			cal_rank();
+		}
 	}
 
 	/* Return a student object by ID

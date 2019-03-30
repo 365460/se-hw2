@@ -37,25 +37,27 @@ public class CalTotalGradeTest{
 	//123452 D 40 30 30 40 30
 	
 	@Test
-	public void test_cal_total_grade1() throws CalTotalGradeException {
+	public void test_cal_total_grade1() {
 		int ID = 123456;
-		Student student = system.get_student(ID);
+		Student student = null;
 		try {
-			double total_grade = system.cal_total_grade(student);
-		} catch(CalTotalGradeException e) {
-		
+			 student = system.get_student(ID);
+		} catch(NoSuchIDExecption e) {
 		}
+		double total_grade = system.cal_total_grade(student);
+		assertEquals(total_grade, 100 , 0);
 	}
 	
 	@Test
-	public void test_cal_total_grade2() throws CalTotalGradeException {
-		int ID = 123456;
-		Student student = system.get_student(ID);
+	public void test_cal_total_grade2()  {
+		int ID = 123454;
+		Student student = null;
 		try {
-			double total_grade = system.cal_total_grade(student);
-		} catch(CalTotalGradeException e) {
-		
+			 student = system.get_student(ID);
+		} catch(NoSuchIDExecption e) {
 		}
+		double total_grade = system.cal_total_grade(student);
+		assertEquals(total_grade, 10 , 0);
 	}
 	
 	 

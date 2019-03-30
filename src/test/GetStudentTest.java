@@ -59,34 +59,5 @@ public class GetStudentTest {
 		}
 	}
 
-			
-	
-	@Test
-	public void test_update_weight1() {
-		double[] update_weight = new double[5]; 
-		for(int i=0;i<5;i++){
-			update_weight[i]=0.1;
-		}		
-		try {
-			system.update_weight(update_weight);
-		} catch(UpdateWeightExecption e) {
-			assertNotNull(e.getMessage());
-		}		
-	}
-	
-	@Test
-	public void test_update_weight2() {
-		double[] update_weight = new double[5]; 
-		update_weight[0] = -0.2;
-		update_weight[1] = 0.2;
-		update_weight[2] = 0.2;
-		update_weight[3] = 0.2;
-		update_weight[4] = 0.6;
-		try {
-			system.update_weight(update_weight);
-		} catch(UpdateWeightExecption e) {
-			System.out.println("update weight > 0");
-		}		
-	}
 	 
 }

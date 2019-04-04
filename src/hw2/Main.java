@@ -30,6 +30,7 @@ public class Main {
 				break;
 			}else{
 				
+				
 				boolean exit = false;
 				Student student = null;
 				int ID = Integer.valueOf(in);
@@ -45,6 +46,7 @@ public class Main {
 							
 				
 				while(exit==false){
+					System.out.println("Please type G,R,A,W,E !");
 					
 					String option = scanner.next();
 					
@@ -74,12 +76,10 @@ public class Main {
 							
 							System.out.println("Input update weight.");
 							double[] update_weight = new double[5]; 
-							//double total = 0 ;
+							
 							for(int i = 0 ; i < 5 ; i++){
 								System.out.print(score_name[i]+":");
-								update_weight[i] = Double.valueOf(scanner.next())/100;
-							//	total += update_weight[i];
-								
+								update_weight[i] = Double.valueOf(scanner.next())/100;	
 							}
 							
 							//Check Input
@@ -103,10 +103,6 @@ public class Main {
 									}
 								}
 							
-							/*}else{
-								System.out.println("Total of update weight is not 100%. Please try again!");
-							}	
-							*/
 							
 						}
 					}
@@ -114,7 +110,7 @@ public class Main {
 						exit = true;
 					}
 					else{
-						System.out.println("Please type G,R,A,W,E !"+"\n");
+						System.out.println("Please type G,R,A,W,E !");
 					}
 				}	
 			}			

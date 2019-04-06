@@ -37,32 +37,26 @@ public class UpdateWeightTest {
 	//123452 D 40 30 30 40 30
 	
 	
-	@Test
-	public void test_update_weight1() {
+	@Test(expected = UpdateWeightExecption.class) 
+	public void test_update_weight1() throws UpdateWeightExecption {
 		double[] update_weight = new double[5]; 
 		for(int i=0;i<5;i++){
-			update_weight[i]=0.1;
+			update_weight[i]=10;
 		}		
-		try {
-			system.update_weight(update_weight);
-		} catch(UpdateWeightExecption e) {
-			assertNotNull(e.getMessage());
-		}		
+
+		system.update_weight(update_weight);
 	}
 	
-	@Test
-	public void test_update_weight2() {
+	@Test(expected = UpdateWeightExecption.class) 
+	public void test_update_weight2() throws UpdateWeightExecption {
 		double[] update_weight = new double[5]; 
-		update_weight[0] = -0.2;
-		update_weight[1] = 0.2;
-		update_weight[2] = 0.2;
-		update_weight[3] = 0.2;
-		update_weight[4] = 0.6;
-		try {
-			system.update_weight(update_weight);
-		} catch(UpdateWeightExecption e) {
-			System.out.println("update weight > 0");
-		}		
+		update_weight[0] = -20;
+		update_weight[1] = 20;
+		update_weight[2] = 20;
+		update_weight[3] = 20;
+		update_weight[4] = 60;
+
+		system.update_weight(update_weight);
 	}
 	 
 }

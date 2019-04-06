@@ -49,15 +49,10 @@ public class GetStudentTest {
 		}
 	}
 
-	@Test
-	public void test_get_student_with_wrong_ID() {
+	@Test(expected = NoSuchIDExecption.class) 
+	public void test_get_student_with_wrong_ID() throws NoSuchIDExecption {
 		int ID = 123;
-		try {
-			Student student = system.get_student(ID);
-		} catch(NoSuchIDExecption e) {
-			assertNotNull(e.getMessage());
-		}
+		Student student = system.get_student(ID);
 	}
-
 	 
 }

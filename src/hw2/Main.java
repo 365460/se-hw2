@@ -10,7 +10,7 @@ public class Main {
 
 	private static Scanner scanner;
 
-	public static void main(String[] args) throws NoSuchIDExecption {
+	public static void main(String[] args) {
 		
 		int num_score = 5;
 		String[] score_name = {"lab1", "lab2", "lab3", "mid-term", "final exam"};
